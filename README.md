@@ -50,26 +50,26 @@ is a system that serve the university community to manage the courses registrati
 | Title         | Text    |
 | Prerequisites | Text    |      
 ## DataBase Class
-*   Login(int ID, String Passwrod).     
-    Return if the Password Correct.   
+*   Login(int ID, String Passwrod).        
+         Return if the Password Correct.   
 
 *   isSectionFull(int CRN)   
-    Return if the Section isFull.
+         Return if the Section isFull.
 
 *  GetCoursePre(int CRN)    
-    Return The Course  Prerequisites.
+         Return The Course  Prerequisites.
 
 *  GetStudentCourses(int userID, int Current_Term)  
-    Return The Student Enrolled  Courses.  
+         Return The Student Enrolled  Courses.  
 
 *  AddCourse(int userID, int CRN, int Current_Term)   
-    Check if there is no conflict then add the Course and return true.  
+         Check if there is no conflict then add the Course and return true.  
 
 *  DropCourse(int userID, int CRN)    
-    Check if the student is already Enrolled in the Course and delete all the Courses based on it Then delete it and Return True.   
+         Check if the student is already Enrolled in the Course and delete all the Courses based on it Then delete it and Return True.   
 
 *  Save()   
-    Save all changes to the data base and close it.
+         Save all changes to the data base and close it.
 
 *  GetRegistarionStatus(int userID)   
-    Return The registration Statues.   
+         Return The registration Statues.   
