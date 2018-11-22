@@ -55,6 +55,8 @@ public class DataBase {
 		return Result.getString("Prerequisites").split(" ");
 
 	}
+	
+
 
 	public String[] GetStudentCourses(int userID, int Current_Term) throws Exception {
 		this.Session = c.createStatement();
@@ -71,7 +73,7 @@ public class DataBase {
 	}
 
 	public boolean AddCourse(int userID, int CRN, int Current_Term) throws Exception {
-		if(!this.GetRegistarionStatus(userID))
+		if (!this.GetRegistarionStatus(userID))
 			throw new Exception("Your registraion state is false");
 		// Check if Section Full
 		if (isSectionFull(CRN))
@@ -83,20 +85,20 @@ public class DataBase {
 		// Throw Exception if he didn't finish any course and there are Prerequisites
 		if (finshed[0].isEmpty() && !Pres[0].isEmpty())
 			throw new Exception("All Prerequisites for This Course are not Completed");
-		
+
 		else {
 			// Check if he Didn't Take The Course Before
 			this.Session = c.createStatement();
 			String TargetCourse = Session.executeQuery("Select Course_ID from Sections where CRN=" + CRN + ";")
 					.getString("Course_ID");
-			
+
 			for (String Achived : finshed) {
 				// Throw Exception if he did Take The Course Before
 				if (Achived.equals(TargetCourse))
 					throw new Exception("this Course have been Already taken");
 			}
 			// Check if all Prerequisites Are Achieved
-			if (!Pres[0].isEmpty()) 
+			if (!Pres[0].isEmpty())
 				for (String Pre : Pres) {
 					boolean Achived_pre = false;
 					for (int i = 0; i < finshed.length; i++) {
@@ -107,6 +109,25 @@ public class DataBase {
 						throw new Exception(Pre + " is not complete Prerequisites for This Course");
 				}
 		}
+
+		// Check Time Conflict
+		ResultSet Result = Session.executeQuery("Select * from Sections where CRN=" + CRN + ";");
+		Double Start_Time = Result.getDouble("Start_Time");
+		Double End_Time = Result.getDouble("End_Time");
+		String[] Days = Result.getString("Days").split(" ");
+		String Day = "";
+		for (int i = 0; i < Days.length - 1; i++)
+			Day += "Days LIKE '%" + Days[i] + "%' or ";
+		Day += "Days LIKE '%" + Days[Days.length - 1] + "%'";
+
+		String Qurey_days = String.format(
+				"select  Sections.CRN FROM (select CRN from Enrolled where ID=%d and Term=%d) as C,Sections,Courses  WHERE Sections.CRN=C.CRN and Sections.Course_ID=Courses.Course_ID and (Sections.Start_Time>=%.2f and Sections.Start_Time<=%.2f and Sections.End_Time>=%.2f and Sections.End_Time<=%.2f) and (%s);",
+				userID, Current_Term, Start_Time, End_Time, Start_Time, End_Time, Day);
+		Result = Session.executeQuery(Qurey_days);
+		//Throw Exception if there is Conflict
+		if (Result.next())
+			throw new Exception("The is Conflict with CRN " + Result.getString("CRN"));
+		//if no conflict found add the Course and return true
 		String Query_ernoll = String.format("insert into Enrolled (ID,CRN,Term)values(%d,%d,%d);", userID, CRN,
 				Current_Term);
 		String Query_Increase_Num_Enrolled = String
