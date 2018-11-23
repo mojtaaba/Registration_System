@@ -60,7 +60,10 @@ is a system that serve the university community to manage the courses registrati
          Return The Course  Prerequisites.
 
 *  GetStudentCourses(int userID, int Current_Term)  
-         Return The Student Enrolled  Courses.  
+         Return The Student Enrolled and pre Courses.  
+
+*  GetStudentTermCourses(int userID, int Current_Term)  
+         Return only The Student Enrolled  Courses in this term.
 
 *  AddCourse(int userID, int CRN, int Current_Term)   
          Check if there is no conflict then add the Course and return true.  
