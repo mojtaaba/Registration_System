@@ -71,6 +71,21 @@ public class DataBase {
 		return Course_IDS.split(" ");
 
 	}
+	
+	public String[] GetStudentTermCourses(int userID, int Current_Term) throws Exception {
+		this.Session = c.createStatement();
+		String Query = String.format(
+				"select Sections.Course_ID from Sections,Enrolled where Sections.CRN=Enrolled.CRN and Enrolled.ID=%d and Enrolled.Term==%d;",
+				userID, Current_Term);
+		// return Courses Column with the Specific userID
+		ResultSet Result = Session.executeQuery(Query);
+		String Course_IDS = "";
+		while (Result.next())
+			Course_IDS += Result.getString("Course_ID") + " ";
+		return Course_IDS.split(" ");
+
+	}
+	
 
 	public boolean AddCourse(int userID, int CRN, int Current_Term) throws Exception {
 		if (!this.GetRegistarionStatus(userID))
