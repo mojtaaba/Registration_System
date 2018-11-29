@@ -1,3 +1,4 @@
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -14,7 +15,20 @@ public class DataBase {
 		c = DriverManager.getConnection("jdbc:sqlite:DataBase.db");
 	}
 
-	
+	public Student getStudentInfo(int ID) throws SQLException{
+		Session = c.createStatement();
+
+		String Query = String.format("SELECT * FROM Student where ID=%d;", ID);
+		ResultSet Result =Session.executeQuery(Query);
+		if (!Result.next())
+			return new Student();
+			String Name=Result.getString("FullName");
+			double GPA=Result.getDouble("GPA");
+			String Major=Result.getString("Major");
+			int Status =Result.getInt("Status");
+			Student student=new Student(ID,Name,Major,GPA,Status);
+		return student;		
+	}
 	public  boolean Login(int ID, String Passwrod) throws Exception {
 		Session = c.createStatement();
 

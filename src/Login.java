@@ -1,4 +1,5 @@
 
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +16,9 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-
-public class Main extends Application {
-
-    @Override
+public class Login extends Application {
+public static Student _User=new Student();
+	
     public void start(Stage primaryStage) throws Exception{
 
         Label Title = new Label("KFUPM REGISTRAR\nSYSTEM\n\n");
@@ -69,12 +69,13 @@ public class Main extends Application {
             try {
                 DataBase Connecter=new DataBase();
 
-                int Name=Integer.parseInt(user.getText());
+                int ID=Integer.parseInt(user.getText());
                 String password=pass.getText();
-                boolean Logged=Connecter.Login(Name, password);
+                boolean Logged=Connecter.Login(ID, password);
 
 
                 if(Logged) {
+                	_User=Connecter.getStudentInfo(ID);
             	   MainView mainView = new MainView();
             	   mainView.start(primaryStage);}
                else{
@@ -98,37 +99,6 @@ public class Main extends Application {
                 e1.printStackTrace();
             }
         });
-
-
-        //grid.setGridLinesVisible(true);
-
-       /* Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        Label userName = new Label("Username");
-        Label passWord = new Label("Password");
-
-        Button login = new Button("Login");
-        Button cancel = new Button("Cancel");
-        cancel.cancelButtonProperty();
-
-        GridPane grid = new GridPane();
-        grid.setHgap(5);
-        grid.setVgap(30);
-
-
-
-        cancel.setAlignment(Pos.CENTER);
-
-
-        grid.add(userName,0,0);
-        grid.add(passWord,0,1);
-        grid.add(user,1,0);
-        grid.add(pass,1,1);
-        grid.add(login,0,2);
-        grid.add(cancel,1,2);
-        //grid.setPadding(new Insets(20,20,20,20));
-        //grid.setGridLinesVisible(true);
-        cancel.setAlignment(Pos.CENTER);
-        */
         primaryStage.setTitle("REGISTRAR SYSTEM");
         primaryStage.setScene(new Scene(grid, 250, 275));
         primaryStage.show();

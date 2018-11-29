@@ -1,13 +1,14 @@
 
+
 public class Student {
 private int ID;
 private String Name,Major;
 private Double GPA;
-private boolean Status;
+private int Status;
 public Student() {
-	this(0,"","",4,true);
+	this(0,"null","null",4,1);
 }
-public Student(int ID,String Name,String Major,double GPA,boolean Status) {
+public Student(int ID,String Name,String Major,double GPA,int Status) {
 	this.ID=ID;
 	this.Name=Name;
 	this.Major=Major;
@@ -26,7 +27,7 @@ public String getMajor() {
 public Double getGPA() {
 	return GPA;
 }
-public boolean isStatus() {
+public int getStatus() {
 	return Status;
 }
 

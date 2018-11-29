@@ -1,9 +1,22 @@
 
+
 public class Test_DataBase {
 
 	public static void main(String[] args) throws Exception {
 		DataBase Connecter=new DataBase();
-		int UserID=201600000;
+		Student obj=Connecter.getStudentInfo(201600000);
+		System.out.println(obj.getID());
+		System.out.println(obj.getName());
+		System.out.println(obj.getMajor());
+		System.out.println(obj.getStatus());
+		System.out.println(obj.getGPA());
+		/*Student nullobj=Connecter.getStudentInfo(2016555500);
+		System.out.println(nullobj.getID());
+		System.out.println(nullobj.getName());
+		System.out.println(nullobj.getMajor());
+		System.out.println(nullobj.getStatus());
+		System.out.println(nullobj.getGPA());*/
+		/*int UserID=201600000;
 		String Passwrod="1234";
 		int CRN1=111;
 		int CRN2=105;
@@ -17,7 +30,7 @@ public class Test_DataBase {
 		System.out.println("Number of Enrolled Courses for "+UserID+"  :   "+Connecter.GetStudentCourses(UserID,Current_Term).length);
 		
 		System.out.println("Registarion Status   :" +Connecter.GetRegistarionStatus(UserID));
-		Connecter.Save();
+		Connecter.Save();*/
 	}
 
 }

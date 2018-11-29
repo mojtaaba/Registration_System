@@ -1,4 +1,5 @@
 
+
         import javafx.application.Application;
         import javafx.geometry.Pos;
         import javafx.scene.Scene;
@@ -14,8 +15,6 @@
         import javafx.scene.text.TextAlignment;
         import javafx.stage.Stage;
         import javafx.event.ActionEvent;
-
-
 public class MainView extends Application {
 
     @Override
@@ -34,10 +33,10 @@ public class MainView extends Application {
         bt3.setPrefSize(150,30);
         bt4.setPrefSize(150,30);
         bt5.setPrefSize(150,30);
-
-        Label name = new Label("Name: ");
-        Label kfupmId = new Label("KFUPM ID: ");
-        Label lastRT = new Label("Last registerd Term: ");
+        
+        Label name = new Label("Name: "+Login._User.getName());
+        Label kfupmId = new Label("KFUPM ID: "+Login._User.getID());
+        Label lastRT = new Label("Last registerd Term: 181");
         Label info = new Label("more info");
 
         info.setTextFill(Color.BLUE);

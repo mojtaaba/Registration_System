@@ -1,4 +1,5 @@
 
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -16,7 +17,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 /**
- * Created by ahmd on 29 نوف، 2018 م.
+ * Created by ahmd on 29 نو�?، 2018 م.
  */
 
 
