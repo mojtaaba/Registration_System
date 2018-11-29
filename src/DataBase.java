@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataBase {
-	Connection c;
-	Statement Session;
+	static Connection  c;
+	static Statement Session;
 
 	// Connect to The DataBase
 	DataBase() throws Exception {
@@ -15,8 +15,8 @@ public class DataBase {
 	}
 
 	
-	public boolean Login(int ID, String Passwrod) throws Exception {
-		this.Session = c.createStatement();
+	public static boolean Login(int ID, String Passwrod) throws Exception {
+		Session = c.createStatement();
 		String Query = String.format("SELECT * FROM Student where ID=%d;", ID);
 		ResultSet Result =Session.executeQuery(Query);
 		if (!Result.next())
