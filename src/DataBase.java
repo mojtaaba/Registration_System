@@ -26,7 +26,8 @@ public class DataBase {
 			double GPA=Result.getDouble("GPA");
 			String Major=Result.getString("Major");
 			int Status =Result.getInt("Status");
-			Student student=new Student(ID,Name,Major,GPA,Status);
+			int totalCredit=Result.getInt("TotalCredit");
+			Student student=new Student(ID,Name,Major,GPA,Status,totalCredit);
 		return student;		
 	}
 	public  boolean Login(int ID, String Passwrod) throws Exception {
@@ -73,11 +74,11 @@ public class DataBase {
 	
 
 
-	public String[] GetStudentCourses(int userID, int Current_Term) throws Exception {
+	public String[] GetStudentCourses(int userID) throws Exception {
 		this.Session = c.createStatement();
 		String Query = String.format(
 				"select Sections.Course_ID from Sections,Enrolled where Sections.CRN=Enrolled.CRN and Enrolled.ID=%d and Enrolled.Term<=%d;",
-				userID, Current_Term);
+				userID, Login.Current_term);
 		// return Courses Column with the Specific userID
 		ResultSet Result = Session.executeQuery(Query);
 		String Course_IDS = "";
@@ -87,11 +88,11 @@ public class DataBase {
 
 	}
 	
-	public String[] GetStudentTermCourses(int userID, int Current_Term) throws Exception {
+	public String[] GetStudentTermCourses(int userID) throws Exception {
 		this.Session = c.createStatement();
 		String Query = String.format(
 				"select Sections.Course_ID from Sections,Enrolled where Sections.CRN=Enrolled.CRN and Enrolled.ID=%d and Enrolled.Term==%d;",
-				userID, Current_Term);
+				userID, Login.Current_term);
 		// return Courses Column with the Specific userID
 		ResultSet Result = Session.executeQuery(Query);
 		String Course_IDS = "";
@@ -102,15 +103,22 @@ public class DataBase {
 	}
 	
 
-	public boolean AddCourse(int userID, int CRN, int Current_Term) throws Exception {
-		if (!this.GetRegistarionStatus(userID))
+	public boolean AddCourse(int CRN) throws Exception {
+		if (!this.GetRegistarionStatus(Login._User.getID()))
 			throw new Exception("Your registraion state is false");
+		
+		
+		
 		// Check if Section Full
 		if (isSectionFull(CRN))
 			throw new Exception("Section is Full");
-
+		//Check if not reached maximum credit
+				String Qurey_Credit = String.format("Select Courses.Credit from Courses,Sections where Courses.Course_ID=Sections.Course_ID and Sections.CRN=%d;",CRN);
+				 int Credit= Session.executeQuery(Qurey_Credit).getInt("Credit");
+		if(Login._User.getGPA()+Credit>19)
+			throw new Exception("Your Reached the maximum allowed Credit");
 		String[] Pres = this.GetCoursePre(CRN);
-		String[] finshed = this.GetStudentCourses(userID, Current_Term);
+		String[] finshed = this.GetStudentCourses(Login._User.getID());
 
 		// Throw Exception if he didn't finish any course and there are Prerequisites
 		if (finshed[0].isEmpty() && !Pres[0].isEmpty())
@@ -152,19 +160,21 @@ public class DataBase {
 
 		String Qurey_days = String.format(
 				"select  Sections.CRN FROM (select CRN from Enrolled where ID=%d and Term=%d) as C,Sections,Courses  WHERE Sections.CRN=C.CRN and Sections.Course_ID=Courses.Course_ID and (Sections.Start_Time>=%.2f and Sections.Start_Time<=%.2f and Sections.End_Time>=%.2f and Sections.End_Time<=%.2f) and (%s);",
-				userID, Current_Term, Start_Time, End_Time, Start_Time, End_Time, Day);
+				Login._User.getID(), Login.Current_term, Start_Time, End_Time, Start_Time, End_Time, Day);
 		Result = Session.executeQuery(Qurey_days);
 		//Throw Exception if there is Conflict
 		if (Result.next())
 			throw new Exception("The is Conflict with CRN " + Result.getString("CRN"));
 		//if no conflict found add the Course and return true
-		String Query_ernoll = String.format("insert into Enrolled (ID,CRN,Term)values(%d,%d,%d);", userID, CRN,
-				Current_Term);
+		String Query_ernoll = String.format("insert into Enrolled (ID,CRN,Term)values(%d,%d,%d);", Login._User.getID(), CRN,
+				Login.Current_term);
 		String Query_Increase_Num_Enrolled = String
 				.format("update Sections set Num_Enrolled=Num_Enrolled+1 where CRN=%d;", CRN);
 		Session.executeUpdate(Query_ernoll);
 		Session.executeUpdate(Query_Increase_Num_Enrolled);
-
+		String Query_Increase_Credit = String.format("update Student set TotalCredit=TotalCredit + %d where ID=%d;", Credit,Login._User.getID());
+		Session.executeUpdate(Query_Increase_Credit);
+		Login._User.settotalCredit(Login._User.gettotalCredit()+Credit);
 		return true;
 	}
 	
@@ -194,7 +204,12 @@ public class DataBase {
 		String Query_decrease_Num_Enrolled = String.format("update Sections set Num_Enrolled=Num_Enrolled-1 where CRN=%d;", CRN);
 		Session.executeUpdate(Query_Delete);
 		Session.executeUpdate(Query_decrease_Num_Enrolled);
-
+		//get course credit
+		String Qurey_Credit = String.format("Select Courses.Credit from Courses,Sections where Courses.Course_ID=Sections.Course_ID and Sections.CRN=%d;",CRN);
+		 int Credit= Session.executeQuery(Qurey_Credit).getInt("Credit");
+		String Query_decrease_Credit = String.format("update Student set TotalCredit=TotalCredit + %d where ID=%d;", Credit,Login._User.getID());
+		Session.executeUpdate(Query_decrease_Credit);
+		Login._User.settotalCredit(Login._User.gettotalCredit()-Credit);
 		return true;
 	}
 

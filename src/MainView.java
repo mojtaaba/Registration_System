@@ -36,6 +36,7 @@ public class MainView extends Application {
         
         Label name = new Label("Name: "+Login._User.getName());
         Label kfupmId = new Label("KFUPM ID: "+Login._User.getID());
+        Label totCredit = new Label("Total Credit: "+Login._User.gettotalCredit());
         Label lastRT = new Label("Last registerd Term: 181");
         Label info = new Label("more info");
 
@@ -67,8 +68,9 @@ public class MainView extends Application {
         userGrid.add(userImage,0,0);
         userGrid.add(name,0,1);
         userGrid.add(kfupmId,0,2);
-        userGrid.add(lastRT,0,3);
-        userGrid.add(info,0,4);
+        userGrid.add(totCredit,0,3);
+        userGrid.add(lastRT,0,4);
+        userGrid.add(info,0,5);
         userGrid.setVgap(10);
 
         grid1.add(grid2,1,0);

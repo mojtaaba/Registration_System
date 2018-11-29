@@ -18,7 +18,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 public class Login extends Application {
 public static Student _User=new Student();
-	
+public static int Current_term=181;	
     public void start(Stage primaryStage) throws Exception{
 
         Label Title = new Label("KFUPM REGISTRAR\nSYSTEM\n\n");
