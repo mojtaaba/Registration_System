@@ -68,11 +68,11 @@ public class Main extends Application {
                 String password=pass.getText();
                 boolean Logged=DataBase.Login(Name, password);
                 System.out.println(Logged);
-              /* if(Logged) {
-            	   //MainView mainView = new MainView();
-            	   //mainView.start(primaryStage);}
-               else;   
-                */
+               if(Logged) {
+            	   MainView mainView = new MainView();
+            	   mainView.start(primaryStage);}
+               else{}
+
                 
                 
             } catch (Exception e1) {
