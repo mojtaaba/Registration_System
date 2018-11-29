@@ -61,9 +61,20 @@ public class Main extends Application {
         grid2.add(PWB,0,1);
        // grid.setGridLinesVisible(true);
         login.setOnAction((ActionEvent e) -> {
-            MainView mainView = new MainView();
+            
             try {
-                mainView.start(primaryStage);
+                
+                int Name=Integer.parseInt(user.getText());
+                String password=pass.getText();
+                boolean Logged=DataBase.Login(Name, password);
+                System.out.println(Logged);
+              /* if(Logged) {
+            	   //MainView mainView = new MainView();
+            	   //mainView.start(primaryStage);}
+               else;   
+                */
+                
+                
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
