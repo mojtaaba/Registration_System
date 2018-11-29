@@ -30,6 +30,10 @@ public class Main extends Application {
         user.setPromptText("KFUPM ID");
         pass.setPromptText("PASSWORD");
 
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Wrong");
+        alert.setHeaderText(null);
+
         Button login = new Button("\tLogin\t");
         Label passWord = new Label("Forget Password ?");
         passWord.setTextFill(Color.BLUE);
@@ -63,19 +67,34 @@ public class Main extends Application {
         login.setOnAction((ActionEvent e) -> {
             
             try {
-                
+                DataBase Connecter=new DataBase();
+
                 int Name=Integer.parseInt(user.getText());
                 String password=pass.getText();
-                boolean Logged=DataBase.Login(Name, password);
-                System.out.println(Logged);
-               if(Logged) {
+                boolean Logged=Connecter.Login(Name, password);
+
+
+                if(Logged) {
             	   MainView mainView = new MainView();
             	   mainView.start(primaryStage);}
-               else{}
+               else{
+
+                    alert.setContentText("User ID or password is wrong");
+                    alert.show();
+
+                }
 
                 
                 
-            } catch (Exception e1) {
+            }
+             catch(NumberFormatException e2){
+
+
+
+                 alert.setContentText("please enter correct ID");
+                 alert.show();
+             }
+            catch (Exception e1) {
                 e1.printStackTrace();
             }
         });
