@@ -74,11 +74,11 @@ public class DataBase {
 	
 
 
-	public String[] GetStudentCourses(int userID) throws Exception {
+	public String[] GetStudentCourses() throws Exception {
 		this.Session = c.createStatement();
 		String Query = String.format(
 				"select Sections.Course_ID from Sections,Enrolled where Sections.CRN=Enrolled.CRN and Enrolled.ID=%d and Enrolled.Term<=%d;",
-				userID, Login.Current_term);
+				Login._User.getID(), Login.Current_term);
 		// return Courses Column with the Specific userID
 		ResultSet Result = Session.executeQuery(Query);
 		String Course_IDS = "";
@@ -88,11 +88,11 @@ public class DataBase {
 
 	}
 	
-	public String[] GetStudentTermCourses(int userID) throws Exception {
+	public String[] GetStudentTermCourses() throws Exception {
 		this.Session = c.createStatement();
 		String Query = String.format(
 				"select Sections.Course_ID from Sections,Enrolled where Sections.CRN=Enrolled.CRN and Enrolled.ID=%d and Enrolled.Term=%d;",
-				userID, Login.Current_term);
+				Login._User.getID(), Login.Current_term);
 		// return Courses Column with the Specific userID
 		ResultSet Result = Session.executeQuery(Query);
 		String Course_IDS = "";
@@ -104,7 +104,7 @@ public class DataBase {
 	
 
 	public boolean AddCourse(int CRN) throws Exception {
-		if (!this.GetRegistarionStatus(Login._User.getID()))
+		if (!this.GetRegistrationStatus(Login._User.getID()))
 			throw new Exception("Your registraion state is false");
 		
 		
@@ -121,7 +121,7 @@ public class DataBase {
 		if(Term_Credit+Credit>19)
 			throw new Exception("Your Reached the maximum allowed Credit");
 		String[] Pres = this.GetCoursePre(CRN);
-		String[] finshed = this.GetStudentCourses(Login._User.getID());
+		String[] finshed = this.GetStudentCourses();
 
 		// Throw Exception if he didn't finish any course and there are Prerequisites
 		if (finshed[0].isEmpty() && !Pres[0].isEmpty())
@@ -182,7 +182,7 @@ public class DataBase {
 	}
 	
 	public boolean DropCourse( int CRN) throws Exception {
-		if(!this.GetRegistarionStatus(Login._User.getID()))
+		if(!this.GetRegistrationStatus(Login._User.getID()))
 			throw new Exception("Your registraion state is false");
 		this.Session = c.createStatement();
 		
@@ -223,7 +223,7 @@ public class DataBase {
 	}
 
 
-	public boolean GetRegistarionStatus(int userID) throws Exception {
+	public boolean GetRegistrationStatus(int userID) throws Exception {
 		this.Session = c.createStatement();
 		String Query = String.format("SELECT * FROM Student where ID=%d;", userID);
 		ResultSet Result =Session.executeQuery(Query);
