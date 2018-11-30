@@ -4,15 +4,11 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -30,7 +26,7 @@ public class RegistrationStatus extends Application {
         Button back = new Button("Back");
         HBox btnB = new HBox();
         btnB.getChildren().add(back);
-        HBox PWB = new HBox();
+
         HBox TableBox = new HBox();
 
         Label EarnedCredit = new Label("Earned Credit");
@@ -56,7 +52,7 @@ public class RegistrationStatus extends Application {
         
         
         
-        TableView<data> tableView = new TableView();
+        TableView<data> tableView = new TableView<data>();
         TableBox.getChildren().add(tableView);
 
         

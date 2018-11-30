@@ -5,7 +5,7 @@ import javafx.scene.control.ComboBox;
 public class Section {
 private String Course,Day;
 private int CRN,Credit;
-private ComboBox State;
+private ComboBox<String> State;
 public Section() {
 	this("Course_ID",101,"UTR",1);
 }
@@ -26,7 +26,7 @@ public String getCourse() {
 public String getDay() {
 	return this.Day;
 }
-public ComboBox getState() {
+public ComboBox<String> getState() {
 	return State;
 }
 public int getCredit() {
