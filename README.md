@@ -26,7 +26,7 @@ we are going to implement the  following four Cases
 6-Click on Add External JARS... from the right side.     
 7-Chose the sqlite-jdbc.jar you have downloaded from the Prerequisites.    
 8-Click Apply and Close and that's it!!!.    
-# Data Base:    
+# Data Base table:    
 ## Student  
 | Column        | Type    |
 | :-------      | :-------|
@@ -76,8 +76,8 @@ we are going to implement the  following four Cases
 *  GetStudentCourses():String[]
          Return The Student Enrolled and pre Courses.  
 
-*  GetStudentTermCourses():String[]  
-         Return only The Student Enrolled  Courses in this term.
+*  GetStudentMainCourses():String[]  
+         Return only The Student Enrolled  Courses in this term and after.
 
 *  AddCourse(int CRN):boolean   
          Check if there is no conflict then add the Course and return true.  
@@ -88,11 +88,16 @@ we are going to implement the  following four Cases
 *  Save()   
          Save all changes to the data base and close it.
 
-*  GetRegistarionStatus(int userID):boolean   
-         Return The registration Statues.  
 
 *  GetStudentTermSection():Section[]
           Return array of all information about the current term Section_Number
 
 *  GetStudentSectionsNumber():integer
           Return the number of enrolled section in the current Term
+
+
+
+## Note
+* Any unmentioned method/Class are just a helper method/class(get/set value).
+* Don't forget to add the SQLite Library.
+* See The attached file called "Seed.pdf"

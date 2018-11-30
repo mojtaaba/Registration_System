@@ -2,18 +2,14 @@
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 public class Login extends Application {
@@ -21,32 +17,40 @@ public static Student _User=new Student();
 public static int Current_term=181;	
     public void start(Stage primaryStage) throws Exception{
 
+        //adding a Title
         Label Title = new Label("KFUPM REGISTRAR\nSYSTEM\n\n");
         Title.setFont(new Font(20));
         Title.setTextAlignment(TextAlignment.CENTER);
 
+        //adding Username and password field
         TextField user = new TextField();
         PasswordField pass = new PasswordField();
         user.setPromptText("KFUPM ID");
         pass.setPromptText("PASSWORD");
 
+        //message box which will show errors
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Wrong");
         alert.setHeaderText(null);
 
+        //login button and resetpassword button
         Button login = new Button("\tLogin\t");
         Label passWord = new Label("Forget Password ?");
         passWord.setTextFill(Color.BLUE);
         HBox btnB = new HBox();
         HBox PWB = new HBox();
 
+        //
         btnB.setAlignment(Pos.CENTER);
         btnB.getChildren().add(login);
         PWB.setAlignment(Pos.CENTER);
         PWB.getChildren().add(passWord);
+
+        //adding the main grid for coordinate the page
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(5,20,5,20));
 
+        //adding the rest grids and menage the gab and spaces between them
         GridPane grid1 = new GridPane();
         grid1.setVgap(5);
         GridPane grid2 = new GridPane();
@@ -54,7 +58,6 @@ public static int Current_term=181;
         grid.setAlignment(Pos.CENTER);
         grid1.setAlignment(Pos.CENTER);
         grid2.setAlignment(Pos.CENTER);
-       // grid.setHgap(5);
         grid.setVgap(20);
         grid.add(Title,0,1);
         grid.add(grid1,0,2);
@@ -63,7 +66,8 @@ public static int Current_term=181;
         grid1.add(pass,0,1);
         grid2.add(btnB,0,0);
         grid2.add(PWB,0,1);
-       // grid.setGridLinesVisible(true);
+
+        //Login Action
         login.setOnAction((ActionEvent e) -> {
             
             try {

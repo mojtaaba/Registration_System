@@ -51,7 +51,7 @@ public class DataBase {
 		
 		//Throw Exception if The Section Was not Found
 			if (!Result.next())
-				throw new Exception("The Section with the Specified CRN was Not Found");
+				throw new Exception("The Section with CRN   "+CRN+" was Not Found");
 		
 		//Return if The Section is Full or note
 			return Result.getInt("Num_Enrolled") >= Result.getInt("Size");
@@ -66,7 +66,7 @@ public class DataBase {
 		ResultSet Result = Session.executeQuery(Query);
 		// Throw Exception if The Course Was not Found
 		if (!Result.next())
-			throw new Exception("The Course with the Specified CRN was Not Found");
+			throw new Exception("The Section with CRN   "+CRN+" was Not Found");
 
 		return Result.getString("Prerequisites").split(" ");
 
@@ -77,7 +77,7 @@ public class DataBase {
 	public String[] GetStudentCourses() throws Exception {
 		this.Session = c.createStatement();
 		String Query = String.format(
-				"select Sections.Course_ID from Sections,Enrolled where Sections.CRN=Enrolled.CRN and Enrolled.ID=%d and Enrolled.Term<=%d;",
+				"select Sections.Course_ID from Sections,Enrolled where Sections.CRN=Enrolled.CRN and Enrolled.ID=%d and Enrolled.Term<%d;",
 				Login._User.getID(), Login.Current_term);
 		// return Courses Column with the Specific userID
 		ResultSet Result = Session.executeQuery(Query);
@@ -88,10 +88,10 @@ public class DataBase {
 
 	}
 	
-	public String[] GetStudentTermCourses() throws Exception {
+	public String[] GetStudentMainCourses() throws Exception {
 		this.Session = c.createStatement();
 		String Query = String.format(
-				"select Sections.Course_ID from Sections,Enrolled where Sections.CRN=Enrolled.CRN and Enrolled.ID=%d and Enrolled.Term=%d;",
+				"select Sections.Course_ID from Sections,Enrolled where Sections.CRN=Enrolled.CRN and Enrolled.ID=%d and Enrolled.Term>=%d;",
 				Login._User.getID(), Login.Current_term);
 		// return Courses Column with the Specific userID
 		ResultSet Result = Session.executeQuery(Query);
@@ -104,13 +104,13 @@ public class DataBase {
 	
 
 	public boolean AddCourse(int CRN) throws Exception {
-		if (!this.GetRegistrationStatus(Login._User.getID()))
+		if(Login._User.getStatus()==0)
 			throw new Exception("Your registraion state is false");
 
 		
 		// Check if Section Full
 		if (isSectionFull(CRN))
-			throw new Exception("Section is Full");
+			throw new Exception("Section With CRN  "+CRN+"is Full");
 		//Check if not reached maximum credit
 				String Qurey_Credit = String.format("Select Courses.Credit from Courses,Sections where Courses.Course_ID=Sections.Course_ID and Sections.CRN=%d;",CRN);
 				 int Credit= Session.executeQuery(Qurey_Credit).getInt("Credit");
@@ -121,22 +121,27 @@ public class DataBase {
 			throw new Exception("Your Reached the maximum allowed Credit");
 		String[] Pres = this.GetCoursePre(CRN);
 		String[] finshed = this.GetStudentCourses();
-
+		String[] MainTerm = this.GetStudentMainCourses();
+		
 		// Throw Exception if he didn't finish any course and there are Prerequisites
 		if (finshed[0].isEmpty() && !Pres[0].isEmpty())
-			throw new Exception("All Prerequisites for This Course are not Completed");
+			throw new Exception("Not all Prerequisites for CRN "+CRN+" are Complet");
 
 		else {
 			// Check if he Didn't Take The Course Before
 			this.Session = c.createStatement();
 			String TargetCourse = Session.executeQuery("Select Course_ID from Sections where CRN=" + CRN + ";")
 					.getString("Course_ID");
-
-			for (String Achived : finshed) {
-				// Throw Exception if he did Take The Course Before
+			// Throw Exception if he did Take The Course Before
+			for (String Achived : MainTerm) {
 				if (Achived.equals(TargetCourse))
-					throw new Exception("this Course have been Already taken");
+					throw new Exception("The Course "+TargetCourse+" have been Already taken");
 			}
+			for (String Achived : finshed) {
+				if (Achived.equals(TargetCourse))
+					throw new Exception("The Course "+TargetCourse+" have been Already taken");
+			}
+			
 			// Check if all Prerequisites Are Achieved
 			if (!Pres[0].isEmpty())
 				for (String Pre : Pres) {
@@ -146,24 +151,12 @@ public class DataBase {
 							Achived_pre = true;
 					}
 					if (!Achived_pre)
-						throw new Exception(Pre + " is not complete Prerequisites for This Course");
+						throw new Exception(Pre + " is not complete Prerequisites for CRN  "+CRN);
 				}
 		}
 
 		// Check Time Conflict
-		ResultSet Result = Session.executeQuery("Select * from Sections where CRN=" + CRN + ";");
-		Double Start_Time = Result.getDouble("Start_Time");
-		Double End_Time = Result.getDouble("End_Time");
-		String[] Days = Result.getString("Days").split(" ");
-		String Day = "";
-		for (int i = 0; i < Days.length - 1; i++)
-			Day += "Days LIKE '%" + Days[i] + "%' or ";
-		Day += "Days LIKE '%" + Days[Days.length - 1] + "%'";
-
-		String Qurey_days = String.format(
-				"select  Sections.CRN FROM (select CRN from Enrolled where ID=%d and Term=%d) as C,Sections,Courses  WHERE Sections.CRN=C.CRN and Sections.Course_ID=Courses.Course_ID and (Sections.Start_Time>=%.2f and Sections.Start_Time<=%.2f and Sections.End_Time>=%.2f and Sections.End_Time<=%.2f) and (%s);",
-				Login._User.getID(), Login.Current_term, Start_Time, End_Time, Start_Time, End_Time, Day);
-		Result = Session.executeQuery(Qurey_days);
+		ResultSet Result = getTimeConflictResult(CRN);
 		//Throw Exception if there is Conflict
 		if (Result.next())
 			throw new Exception("There is Conflict with CRN : " + Result.getString("CRN"));
@@ -180,8 +173,28 @@ public class DataBase {
 		return true;
 	}
 	
+	
+	
+	//Return query with conflicted courses
+	private ResultSet getTimeConflictResult(int CRN) throws SQLException {
+		ResultSet Result = Session.executeQuery("Select * from Sections where CRN=" + CRN + ";");
+		Double Start_Time = Result.getDouble("Start_Time");
+		Double End_Time = Result.getDouble("End_Time");
+		String[] Days = Result.getString("Days").split(" ");
+		String Day = "";
+		for (int i = 0; i < Days.length - 1; i++)
+			Day += "Days LIKE '%" + Days[i] + "%' or ";
+		Day += "Days LIKE '%" + Days[Days.length - 1] + "%'";
+
+		String Qurey_days = String.format(
+				"select  Sections.CRN FROM (select CRN from Enrolled where ID=%d and Term=%d) as C,Sections,Courses  WHERE Sections.CRN=C.CRN and Sections.Course_ID=Courses.Course_ID and (Sections.Start_Time>=%.2f and Sections.Start_Time<=%.2f and Sections.End_Time>=%.2f and Sections.End_Time<=%.2f) and (%s);",
+				Login._User.getID(), Login.Current_term, Start_Time, End_Time, Start_Time, End_Time, Day);
+		Result = Session.executeQuery(Qurey_days);
+		return Result;
+	}
+	
 	public boolean DropCourse( int CRN) throws Exception {
-		if(!this.GetRegistrationStatus(Login._User.getID()))
+		if(Login._User.getStatus()==0)
 			throw new Exception("Your registraion state is false");
 		this.Session = c.createStatement();
 		
@@ -221,15 +234,6 @@ public class DataBase {
 	}
 
 
-	public boolean GetRegistrationStatus(int userID) throws Exception {
-		this.Session = c.createStatement();
-		String Query = String.format("SELECT * FROM Student where ID=%d;", userID);
-		ResultSet Result =Session.executeQuery(Query);
-		if (!Result.next())
-			return false;
-		// Return if the Password match the specific one or note
-		return Session.executeQuery(Query).getInt("Status")==1;
-	}
 	
 	public Section[] GetStudentTermSection() throws Exception {
 		this.Session = c.createStatement();

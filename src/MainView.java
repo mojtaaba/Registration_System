@@ -10,7 +10,6 @@
         import javafx.scene.input.MouseEvent;
         import javafx.scene.layout.GridPane;
         import javafx.scene.paint.Color;
-        import javafx.scene.shape.Circle;
         import javafx.scene.text.Font;
         import javafx.scene.text.TextAlignment;
         import javafx.stage.Stage;
@@ -19,10 +18,13 @@ public class MainView extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
+        //set title
         Label Title = new Label("Student Main Page\n\n");
         Title.setFont(Font.font(30));
         Title.setTextAlignment(TextAlignment.CENTER);
+
+
+        //adding buttons and set their size
         Button bt1 = new Button("Add/ Drop");
         Button bt2 = new Button("Transcript");
         Button bt3 = new Button("Weekly Schedule");
@@ -33,29 +35,33 @@ public class MainView extends Application {
         bt3.setPrefSize(150,30);
         bt4.setPrefSize(150,30);
         bt5.setPrefSize(150,30);
-        
+
+        //add student information
         Label name = new Label("Name: "+Login._User.getName());
         Label kfupmId = new Label("KFUPM ID: "+Login._User.getID());
         Label totCredit = new Label("Total Credit: "+Login._User.gettotalCredit());
         Label lastRT = new Label("Last registerd Term: 181");
         Label info = new Label("more info");
 
+        //
         info.setTextFill(Color.BLUE);
         info.setOnMouseClicked((MouseEvent e) -> {});
 
+        //add image of user
         Image image = new Image("/user.png");
-
         ImageView userImage = new ImageView(image);
         userImage.setFitHeight(150);
         userImage.setFitWidth(150);
 
 
+        //adding the main grid for coordinate the page
         GridPane grid = new GridPane();
         GridPane userGrid = new GridPane();
 
         GridPane grid1 = new GridPane();
         GridPane grid2 = new GridPane();
 
+        //set the gab between grids
         grid.setHgap(40);
         grid.setVgap(40);
 
@@ -92,6 +98,8 @@ public class MainView extends Application {
         primaryStage.setTitle("Student Main Page");
         primaryStage.setScene(new Scene(grid, 550, 450));
         primaryStage.show();
+
+        //Show add and drop page
         bt1.setOnAction((ActionEvent e) -> {
             AddDrop show = new AddDrop();
             try {
@@ -100,6 +108,8 @@ public class MainView extends Application {
                 e1.printStackTrace();
             }
         });
+
+        //Show Registration Status
         bt5.setOnAction((ActionEvent e) -> {
             RegistrationStatus show = new RegistrationStatus();
             try {
