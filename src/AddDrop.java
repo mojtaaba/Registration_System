@@ -173,7 +173,9 @@ public class AddDrop extends Application {
             T[i].clear();
         });
         
-        
+        Alert message = new Alert(Alert.AlertType.INFORMATION);
+        message.setHeaderText(null);
+        message.setTitle("ERROR in CRN");
         btn1.setOnAction((ActionEvent e) -> {
             int size;
 			try {
@@ -189,6 +191,7 @@ public class AddDrop extends Application {
 	            }
 			} 
 			catch (Exception e1) {
+
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
@@ -199,8 +202,14 @@ public class AddDrop extends Application {
             		try {
 						Connecter.AddCourse(Integer.parseInt(T[i].getText()));
 					
-					} catch (Exception e1) {
-						e1.printStackTrace();
+					} catch (NumberFormatException e2) {
+                        message.setContentText("please write a correct CRN");
+                        message.show();
+                        //e2.printStackTrace();
+                    }catch (Exception e1) {
+            		    message.setContentText(e1.getMessage());
+                        message.show();
+						//e1.printStackTrace();
 					}
             		
             	}

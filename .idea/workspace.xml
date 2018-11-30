@@ -2,24 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a92f806e-1ecc-481c-830b-29502df2c610" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DataBase.db-journal" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Test_DataBase.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataBase.db" afterPath="$PROJECT_DIR$/DataBase.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/AddDrop.class" afterPath="$PROJECT_DIR$/bin/AddDrop.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/DataBase.class" afterPath="$PROJECT_DIR$/bin/DataBase.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Login.class" afterPath="$PROJECT_DIR$/bin/Login.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/MainView.class" afterPath="$PROJECT_DIR$/bin/MainView.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/RegistrationStatus$data.class" afterPath="$PROJECT_DIR$/bin/RegistrationStatus$data.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/RegistrationStatus.class" afterPath="$PROJECT_DIR$/bin/RegistrationStatus.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Section.class" afterPath="$PROJECT_DIR$/bin/Section.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Student.class" afterPath="$PROJECT_DIR$/bin/Student.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Test_DataBase.class" afterPath="$PROJECT_DIR$/bin/Test_DataBase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/user.png" afterPath="$PROJECT_DIR$/bin/user.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/user.png" afterPath="$PROJECT_DIR$/src/user.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/sample.fxml" afterPath="$PROJECT_DIR$/bin/sample.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AddDrop.java" afterPath="$PROJECT_DIR$/src/AddDrop.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DataBase.java" afterPath="$PROJECT_DIR$/src/DataBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Login.java" afterPath="$PROJECT_DIR$/src/Login.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MainView.java" afterPath="$PROJECT_DIR$/src/MainView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RegistrationStatus.java" afterPath="$PROJECT_DIR$/src/RegistrationStatus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Student.java" afterPath="$PROJECT_DIR$/src/Student.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample.fxml" afterPath="$PROJECT_DIR$/src/sample.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Section.java" afterPath="$PROJECT_DIR$/src/Section.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,7 +33,7 @@
       <file leaf-file-name="DataBase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DataBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
+            <state relative-caret-position="41">
               <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
               <folding />
             </state>
@@ -45,22 +43,10 @@
       <file leaf-file-name="AddDrop.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AddDrop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="199" column="43" lean-forward="false" selection-start-line="199" selection-start-column="34" selection-end-line="199" selection-end-column="43" />
+            <state relative-caret-position="667">
+              <caret line="211" column="26" lean-forward="false" selection-start-line="211" selection-start-column="26" selection-end-line="211" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Test_DataBase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Test_DataBase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="27" column="30" lean-forward="false" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
-              <folding>
-                <marker date="1543546582877" expanded="true" signature="1444:1447" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -94,10 +80,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AddDrop.java" />
         <option value="$PROJECT_DIR$/src/Test_DataBase.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/DataBase.java" />
+        <option value="$PROJECT_DIR$/src/AddDrop.java" />
       </list>
     </option>
   </component>
@@ -120,6 +106,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -148,9 +137,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -461,7 +447,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32802126" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32802126" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -496,6 +482,40 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/DataBase.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1545">
+          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Test_DataBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="30" lean-forward="false" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.classpath">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AddDrop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2685">
+          <caret line="199" column="43" lean-forward="false" selection-start-line="199" selection-start-column="34" selection-end-line="199" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataBase.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -506,9 +526,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="54" lean-forward="false" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
-          <folding>
-            <marker date="1543546582877" expanded="true" signature="1444:1447" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -533,9 +551,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="54" lean-forward="false" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
-          <folding>
-            <marker date="1543546582877" expanded="true" signature="1444:1447" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -551,7 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="61">
           <caret line="6" column="74" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -566,17 +581,15 @@
     <entry file="file://$PROJECT_DIR$/src/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/Test_DataBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
+        <state relative-caret-position="405">
           <caret line="27" column="30" lean-forward="false" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
-          <folding>
-            <marker date="1543546582877" expanded="true" signature="1444:1447" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DataBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
+        <state relative-caret-position="41">
           <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
           <folding />
         </state>
@@ -584,8 +597,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AddDrop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="199" column="43" lean-forward="false" selection-start-line="199" selection-start-column="34" selection-end-line="199" selection-end-column="43" />
+        <state relative-caret-position="667">
+          <caret line="211" column="26" lean-forward="false" selection-start-line="211" selection-start-column="26" selection-end-line="211" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
