@@ -7,7 +7,7 @@ private Double GPA;
 private int Status;
 private int totalCredit;
 public Student() {
-	this(0,"null","null",4,0,0);
+	this(0000,"null","null",4,1,29);
 }
 public Student(int ID,String Name,String Major,double GPA,int Status,int totalCredit) {
 	this.ID=ID;
