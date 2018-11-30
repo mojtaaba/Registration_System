@@ -147,6 +147,7 @@ public class AddDrop extends Application {
         back.setOnAction((ActionEvent e) -> {
             MainView show = new MainView();
             try {
+            	Connecter.Save();
                 show.start(primaryStage);
             } catch (Exception e1) {
                 e1.printStackTrace();

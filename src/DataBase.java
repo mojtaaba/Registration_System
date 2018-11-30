@@ -210,7 +210,7 @@ public class DataBase {
 		//get course credit
 		String Qurey_Credit = String.format("Select Courses.Credit from Courses,Sections where Courses.Course_ID=Sections.Course_ID and Sections.CRN=%d;",CRN);
 		 int Credit= Session.executeQuery(Qurey_Credit).getInt("Credit");
-		String Query_decrease_Credit = String.format("update Student set TotalCredit=TotalCredit + %d where ID=%d;", Credit,Login._User.getID());
+		String Query_decrease_Credit = String.format("update Student set TotalCredit=TotalCredit - %d where ID=%d;", Credit,Login._User.getID());
 		Session.executeUpdate(Query_decrease_Credit);
 		Login._User.settotalCredit(Login._User.gettotalCredit()-Credit);
 		return true;
@@ -218,7 +218,6 @@ public class DataBase {
 
 	// Save All Changes in the DataBase
 	public void Save() throws Exception {
-		System.out.println("Saved");
 		c.close();
 	}
 

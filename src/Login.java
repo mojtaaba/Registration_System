@@ -76,6 +76,7 @@ public static int Current_term=181;
 
                 if(Logged) {
                 	_User=Connecter.getStudentInfo(ID);
+                	Connecter.Save();
             	   MainView mainView = new MainView();
             	   mainView.start(primaryStage);}
                else{
