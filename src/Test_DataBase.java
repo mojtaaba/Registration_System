@@ -11,7 +11,7 @@ public class Test_DataBase {
 		System.out.println(obj.getStatus());
 		System.out.println(obj.getGPA());
 		System.out.println(obj.gettotalCredit());
-		
+		Connecter.GetStudentTermSection(0);
 		/*Student nullobj=Connecter.getStudentInfo(2016555500);
 		System.out.println(nullobj.getID());
 		System.out.println(nullobj.getName());
