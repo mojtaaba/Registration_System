@@ -83,7 +83,7 @@ public class RegistrationStatus extends Application {
         
         
         
-        tableView.setPrefSize(240,100);
+        tableView.setPrefSize(282,100);
 
 
         Label curInfo = new Label("Bachelor of Science\r\n" + 
@@ -121,11 +121,14 @@ public class RegistrationStatus extends Application {
 
 
         grid.setPadding(new Insets(10,10,10,10));
+        LevelColumn.setPrefWidth(110);
+        TypeColumn.setPrefWidth(110);
+        CreditColumn.setPrefWidth(60);
 
 
 
         primaryStage.setTitle("Registration Status");
-        primaryStage.setScene(new Scene(grid, 550, 500));
+        primaryStage.setScene(new Scene(grid, 550, 450));
         primaryStage.show();
 
         back.setOnAction((ActionEvent e) -> {

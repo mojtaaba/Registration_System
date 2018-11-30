@@ -41,9 +41,8 @@ public class MainView extends Application {
         Label info = new Label("more info");
 
         info.setTextFill(Color.BLUE);
-        info.setOnMouseClicked((MouseEvent e) -> {System.out.println("Student information will be show here");});
-        Circle shape = new Circle();
-        shape.setRadius(100);
+        info.setOnMouseClicked((MouseEvent e) -> {});
+
         Image image = new Image("/user.png");
 
         ImageView userImage = new ImageView(image);
