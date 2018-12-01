@@ -3,7 +3,8 @@
         import javafx.application.Application;
         import javafx.geometry.Pos;
         import javafx.scene.Scene;
-        import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
         import javafx.scene.control.Label;
         import javafx.scene.image.Image;
         import javafx.scene.image.ImageView;
@@ -94,6 +95,10 @@ public class MainView extends Application {
 
         grid2.setAlignment(Pos.CENTER);
 
+		//Set the message that will show the errors
+		Alert message = new Alert(Alert.AlertType.INFORMATION);
+		message.setHeaderText(null);
+		message.setTitle("ERROR");
 
         primaryStage.setTitle("Student Main Page");
         primaryStage.setScene(new Scene(grid, 550, 450));
@@ -103,8 +108,14 @@ public class MainView extends Application {
         bt1.setOnAction((ActionEvent e) -> {
             AddDrop show = new AddDrop();
             try {
+            	if(Login._User.getStatus()==0) {
+    				message.setContentText("You are not allowd to enter this page due to your registration statue");
+    				message.show();
+            	}
+            	else
                 show.start(primaryStage);
             } catch (Exception e1) {
+
                 e1.printStackTrace();
             }
         });

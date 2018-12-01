@@ -105,7 +105,7 @@ public class DataBase {
 
 	public boolean AddCourse(int CRN) throws Exception {
 		if(Login._User.getStatus()==0)
-			throw new Exception("Your registraion state is false");
+			throw new Exception("You are not allowd to add course due to your registration statue");
 
 		
 		// Check if Section Full
@@ -195,7 +195,8 @@ public class DataBase {
 	
 	public boolean DropCourse( int CRN) throws Exception {
 		if(Login._User.getStatus()==0)
-			throw new Exception("Your registraion state is false");
+			throw new Exception("You are not allowd to add course due to your registration statue");
+
 		this.Session = c.createStatement();
 		
 		//Check if he is taking that course or not
