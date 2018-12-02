@@ -26,6 +26,7 @@ public class MainView extends Application {
 
 
         //adding buttons and set their size
+        Button back = new Button("Back");
         Button bt1 = new Button("Add/ Drop");
         Button bt2 = new Button("Transcript");
         Button bt3 = new Button("Weekly Schedule");
@@ -36,6 +37,11 @@ public class MainView extends Application {
         bt3.setPrefSize(150,30);
         bt4.setPrefSize(150,30);
         bt5.setPrefSize(150,30);
+
+        bt2.setDisable(true);
+        bt3.setDisable(true);
+        bt4.setDisable(true);
+
 
         //add student information
         Label name = new Label("Name: "+Login._User.getName());
@@ -64,11 +70,13 @@ public class MainView extends Application {
 
         //set the gab between grids
         grid.setHgap(40);
-        grid.setVgap(40);
+        grid.setVgap(10);
 
         grid.setAlignment(Pos.CENTER);
-        grid.add(Title,0,0);
-        grid.add(grid1,0,1);
+        grid.add(back,0,0);
+
+        grid.add(Title,0,1);
+        grid.add(grid1,0,2);
 
         grid1.add(userGrid,0,0);
         userGrid.add(userImage,0,0);
@@ -105,6 +113,15 @@ public class MainView extends Application {
         primaryStage.show();
 
         //Show add and drop page
+        back.setOnAction((ActionEvent e) -> {
+         Login show = new Login();
+            try {
+                show.start(primaryStage);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+
+        });
         bt1.setOnAction((ActionEvent e) -> {
             AddDrop show = new AddDrop();
             try {
