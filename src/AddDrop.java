@@ -3,6 +3,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,9 +11,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+
 
 public class AddDrop extends Application {
 
@@ -20,7 +23,11 @@ public class AddDrop extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		DataBase Connecter = new DataBase();
-		Button back = new Button("Back");
+
+		Label back = new Label("Back");
+		back.setTextFill(Color.BLUE);
+		back.setFont(Font.font(17));
+		//Button back = new Button("Back");
 		HBox btnB = new HBox();
 		btnB.getChildren().add(back);
 
@@ -127,7 +134,7 @@ public class AddDrop extends Application {
 		grid.setPadding(new Insets(10, 10, 10, 10));
 
 		//Set Back Action
-		back.setOnAction((ActionEvent e) -> {
+		back.setOnMouseClicked((MouseEvent e) -> {
 			MainView show = new MainView();
 			try {
 				Connecter.Save();

@@ -7,8 +7,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -23,12 +25,16 @@ public class RegistrationStatus extends Application {
     	String State= Login._User.getStatus()==1 ? "✔" : "✖";
 
     	//Add the Title
-        Label Title = new Label(State+" Registration Status\n\n");
+        Label Title = new Label(" Registration Status\n\n");
         Title.setFont(Font.font(30));
         Title.setTextAlignment(TextAlignment.CENTER);
 
         //Add back button
-        Button back = new Button("Back");
+        Label back = new Label("Back");
+        back.setTextFill(Color.BLUE);
+        back.setFont(Font.font(17));
+
+        //Button back = new Button("Back");
         HBox btnB = new HBox();
         btnB.getChildren().add(back);
 
@@ -134,7 +140,7 @@ public class RegistrationStatus extends Application {
 
 
         //set back button action
-        back.setOnAction((ActionEvent e) -> {
+        back.setOnMouseClicked((MouseEvent e) -> {
             MainView show = new MainView();
             try {
                 show.start(primaryStage);
@@ -142,6 +148,7 @@ public class RegistrationStatus extends Application {
                 e1.printStackTrace();
             }
         });
+
 
 
     }
