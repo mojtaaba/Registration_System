@@ -36,7 +36,8 @@ public static int Current_term=181;
         //login button and resetpassword button
         Button login = new Button("\tLogin\t");
         Label passWord = new Label("Forget Password ?");
-        passWord.setTextFill(Color.BLUE);
+        //passWord.setTextFill(Color.BLUE);
+        //passWord.setTextFill(Color.BLUE);
         HBox btnB = new HBox();
         HBox PWB = new HBox();
 

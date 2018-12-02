@@ -10,8 +10,10 @@ import javafx.scene.control.Button;
         import javafx.scene.image.ImageView;
         import javafx.scene.input.MouseEvent;
         import javafx.scene.layout.GridPane;
+        import javafx.scene.layout.HBox;
         import javafx.scene.paint.Color;
         import javafx.scene.text.Font;
+        import javafx.scene.text.FontPosture;
         import javafx.scene.text.TextAlignment;
         import javafx.stage.Stage;
         import javafx.event.ActionEvent;
@@ -26,7 +28,12 @@ public class MainView extends Application {
 
 
         //adding buttons and set their size
-        Button back = new Button("Back");
+        Label logOut = new Label("Log out");
+        logOut.setTextFill(Color.BLUE);
+        logOut.setFont(Font.font(20));
+
+
+        //Button back = new Button("Back");
         Button bt1 = new Button("Add/ Drop");
         Button bt2 = new Button("Transcript");
         Button bt3 = new Button("Weekly Schedule");
@@ -51,7 +58,7 @@ public class MainView extends Application {
         Label info = new Label("more info");
 
         //
-        info.setTextFill(Color.BLUE);
+        //info.setTextFill(Color.BLUE);
         info.setOnMouseClicked((MouseEvent e) -> {});
 
         //add image of user
@@ -69,11 +76,11 @@ public class MainView extends Application {
         GridPane grid2 = new GridPane();
 
         //set the gab between grids
-        grid.setHgap(40);
+        //grid.setHgap(40);
         grid.setVgap(10);
 
         grid.setAlignment(Pos.CENTER);
-        grid.add(back,0,0);
+        grid.add(logOut,0,0);
 
         grid.add(Title,0,1);
         grid.add(grid1,0,2);
@@ -89,7 +96,7 @@ public class MainView extends Application {
 
         grid1.add(grid2,1,0);
         grid1.setAlignment(Pos.CENTER);
-        grid1.setHgap(80);
+        grid1.setHgap(100);
         grid1.setVgap(8);
 
 
@@ -113,8 +120,9 @@ public class MainView extends Application {
         primaryStage.show();
 
         //Show add and drop page
-        back.setOnAction((ActionEvent e) -> {
-         Login show = new Login();
+        logOut.setOnMouseClicked((MouseEvent e) -> {
+
+            Login show = new Login();
             try {
                 show.start(primaryStage);
             } catch (Exception e1) {
@@ -122,6 +130,10 @@ public class MainView extends Application {
             }
 
         });
+       /* back.setOnAction((ActionEvent e) -> {
+
+
+        });*/
         bt1.setOnAction((ActionEvent e) -> {
             AddDrop show = new AddDrop();
             try {
