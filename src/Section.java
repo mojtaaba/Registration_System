@@ -1,3 +1,9 @@
+/*
+	* Author : Mojtaba Alamer,AHMED ALMOAIRFI
+	* This Class used Store Data as Section Object to make them easier to handel 
+*/
+
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;

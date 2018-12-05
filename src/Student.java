@@ -1,4 +1,7 @@
-
+/*
+	* Author : Mojtaba Alamer,AHMED ALMOAIRFI
+	* This Class used Store Data as Student Object to make them easier to handel 
+*/
 
 public class Student {
 private int ID;

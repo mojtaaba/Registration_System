@@ -1,4 +1,8 @@
-
+/*
+	* Author : Mojtaba Alamer,AHMED ALMOAIRFI
+	* This Class used to connect between the DataBase and GUI 
+	* for further details Please check the README file 
+*/
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

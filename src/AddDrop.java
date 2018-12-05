@@ -1,3 +1,10 @@
+/*
+	* Author : AHMED ALMOAIRFI,Mojtaba Alamer
+	* This Class used to implement the User Interface (Window) for the Add/Drop Functions
+	* The library Used for GUI in this class is javafx
+	* it call GetStudentTermSection() from DataBase Class to fill the Courses Table
+ */
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

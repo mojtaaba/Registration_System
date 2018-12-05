@@ -1,4 +1,8 @@
-
+/*
+	* Author : AHMED ALMOAIRFI,Mojtaba Alamer
+	* This Class used to implement the User Interface (Window) for the Main Menu 
+	* The library Used for GUI in this class is javafx
+*/
 
         import javafx.application.Application;
         import javafx.geometry.Pos;

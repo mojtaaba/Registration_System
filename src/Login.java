@@ -1,4 +1,9 @@
-
+/*
+	* Author : AHMED ALMOAIRFI,Mojtaba Alamer
+	* This Class used to implement the User Interface (Window) for the Login Function
+	* The library Used for GUI in this class is javafx
+	* it call Login() from DataBase Class To check the Login Information
+*/
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
